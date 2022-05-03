@@ -62,6 +62,16 @@ const EditQuestion = () => {
     }
   };
 
+  //delete
+
+  const HandleDelete = async (item) => {
+    const isDeleted = await axios.delete(`${URL}/deletequestion/${item}`);
+    if (isDeleted) {
+      alert("Question Deleted Successfully");
+      setCounter(counter + 1);
+    }
+  };
+
   return (
     <>
       <div className="container d-flex mt-5">
@@ -78,7 +88,11 @@ const EditQuestion = () => {
                   >
                     Edit
                   </button>
-                  <button type="button" class="btn btn-danger">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onClick={() => HandleDelete(item._id)}
+                  >
                     Delete
                   </button>
                 </div>
