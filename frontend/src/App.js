@@ -17,11 +17,13 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Card />} />
-        </Routes>
-        <Routes>
+
+          <Route path="/card" element={<Card />} />
+
+
           <Route path="/createquestions" element={<CreateQuestions />} />
-        </Routes>
-        <Routes>
+
+
           <Route path="/updatequestion" element={<EditQuestion />} />
         </Routes>
 
