@@ -9,6 +9,7 @@ import CreateQuestions from './components/CreateQuestions';
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import EditQuestion from './components/EditQuestion';
+import Practice from './components/Practice';
 function App() {
   return (
 
@@ -25,6 +26,7 @@ function App() {
 
 
           <Route path="/updatequestion" element={<EditQuestion />} />
+          <Route path="/pratice" element={<Practice />} />
         </Routes>
 
 

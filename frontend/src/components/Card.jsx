@@ -10,7 +10,7 @@ const Card = () => {
     getData();
   }, []);
 
-  const HandleEdit = () => {};
+  const HandleMatch = () => {};
   console.log(question);
   return (
     <>
@@ -23,11 +23,44 @@ const Card = () => {
             <div className="card-body">
               <h5 className="card-title">{item?.question}</h5>
               <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  id="customRadio1"
+                  name="customRadio"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="customRadio1">
+                  {item?.option1}
+                </label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  id="customRadio2"
+                  name="customRadio"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="customRadio2">
+                  {item?.option2}
+                </label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  id="customRadio3"
+                  name="customRadio"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="customRadio3">
+                  {item?.option3}
+                </label>
+              </div>
             </div>
+            <button className="btn btn-primary" onClick={HandleMatch}>
+              {" "}
+              Next
+            </button>
           </div>
         </>
       ))}
