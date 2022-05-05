@@ -34,14 +34,14 @@ const Card = () => {
 
   const compareAns = (ans) => {
     if (selectedItem === ans) {
-      if (length === counter) {
-        alert("Completed Successfully start again!!!");
-        setCounter(0);
-      }
       alert("correct ans!!!");
       setCounter(counter + 1);
     } else {
       alert("Wrong ans!!!");
+    }
+    if (length === counter) {
+      alert("Completed Successfully start again!!!");
+      setCounter(0);
     }
   };
 
