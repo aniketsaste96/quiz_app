@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 const Card = () => {
   const [datas, setDatas] = useState([]);
+  const [counter, setCounter] = useState(0);
+  const [length, setLength] = useState(0);
+
   const [selectedItem, setSelectedItem] = useState("");
   useEffect(() => {
     const getData = async () => {
       const getQuestion = await axios.get("http://localhost:8800/getquestions");
-      setDatas(getQuestion.data[0]);
+      setDatas(getQuestion.data[counter]);
+      setLength(getQuestion.data.length);
     };
     getData();
-  }, []);
+  }, [counter]);
 
   // const handleSelected = (item) => {
   //   console.log(item);
@@ -30,85 +34,82 @@ const Card = () => {
 
   const compareAns = (ans) => {
     if (selectedItem === ans) {
+      if (length === counter) {
+        alert("Completed Successfully start again!!!");
+        setCounter(0);
+      }
       alert("correct ans!!!");
+      setCounter(counter + 1);
     } else {
       alert("Wrong ans!!!");
     }
   };
 
-  console.log(datas);
-
   return (
     <>
-      {datas?.map((item) => {
-        return (
-          <>
-            <div class="card" style={{ width: "18rem" }}>
-              <div class="card-body">
-                <h5 class="card-title">{item?.question}</h5>
-                <p class="card-text">
-                  <div
-                    class="form-check"
-                    onClick={() => handleSelected(item?.option1)}
-                  >
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios2"
-                      value={item?.option1}
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      {item?.option1}
-                    </label>
-                  </div>
-                </p>
-                <p class="card-text">
-                  <div
-                    class="form-check"
-                    onClick={() => handleSelected(item?.option2)}
-                  >
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios2"
-                      value={item?.option2}
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      {item?.option2}
-                    </label>
-                  </div>
-                </p>
-                <p class="card-text">
-                  <div
-                    class="form-check"
-                    onClick={() => handleSelected(item?.option3)}
-                  >
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios3"
-                      value={item?.option3}
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      {item?.option3}
-                    </label>
-                  </div>
-                </p>
-                <button
-                  href="#"
-                  class="btn btn-primary"
-                  onClick={() => compareAns(item?.answer)}
-                >
-                  Next
-                </button>
-              </div>
+      <div class="card" style={{ width: "18rem" }}>
+        <div class="card-body">
+          <h5 class="card-title">{datas?.question}</h5>
+          <p class="card-text">
+            <div
+              class="form-check"
+              onClick={() => handleSelected(datas?.option1)}
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios2"
+                value={datas?.option1}
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                {datas?.option1}
+              </label>
             </div>
-          </>
-        );
-      })}
+          </p>
+          <p class="card-text">
+            <div
+              class="form-check"
+              onClick={() => handleSelected(datas?.option2)}
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios2"
+                value={datas?.option2}
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                {datas?.option2}
+              </label>
+            </div>
+          </p>
+          <p class="card-text">
+            <div
+              class="form-check"
+              onClick={() => handleSelected(datas?.option3)}
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios3"
+                value={datas?.option3}
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                {datas?.option3}
+              </label>
+            </div>
+          </p>
+          <button
+            href="#"
+            class="btn btn-primary"
+            onClick={() => compareAns(datas?.answer)}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </>
   );
 };
