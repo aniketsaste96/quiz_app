@@ -11,6 +11,10 @@ const Card = () => {
       const getQuestion = await axios.get("http://localhost:8800/getquestions");
       setDatas(getQuestion.data[counter]);
       setLength(getQuestion.data.length);
+      if (length === counter) {
+        alert("Completed Successfully start again!!!");
+        setCounter(0);
+      }
     };
     getData();
   }, [counter]);
@@ -38,10 +42,6 @@ const Card = () => {
       setCounter(counter + 1);
     } else {
       alert("Wrong ans!!!");
-    }
-    if (length === counter) {
-      alert("Completed Successfully start again!!!");
-      setCounter(0);
     }
   };
 
